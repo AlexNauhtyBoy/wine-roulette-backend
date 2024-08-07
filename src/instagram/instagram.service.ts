@@ -14,7 +14,7 @@ export class InstagramService {
     private configService: ConfigService
   ) {
     this.axiosInstance = axios.create();
-    this.accessToken = this.configService.get<string>('INSTAGRAM_ACCESS_TOKEN');
+    this.accessToken = 'IGQWRQN3hnZAkhrcVNsQ0JUUThobkRZASDlSQW9mY044WGRLYTFEWWV0WnE5ajZAOS3dBN1VWbVplOVFFdHJRMExKN2MwUk9XalpQTmZA2bzFvVjFac3IwOFFVS3N0aDBjVFpTM2FuMzk5d1lZAMk93ZAE40UXVtTnpwWGcZD';
   }
 
   async processEvent(event: any) {
