@@ -14,7 +14,7 @@ export class InstagramService {
     private configService: ConfigService
   ) {
     this.axiosInstance = axios.create();
-    this.accessToken = 'IGQWRQN3hnZAkhrcVNsQ0JUUThobkRZASDlSQW9mY044WGRLYTFEWWV0WnE5ajZAOS3dBN1VWbVplOVFFdHJRMExKN2MwUk9XalpQTmZA2bzFvVjFac3IwOFFVS3N0aDBjVFpTM2FuMzk5d1lZAMk93ZAE40UXVtTnpwWGcZD';
+    this.accessToken = 'IGQWROelZAQel9ZAU0dlNEVPN0tvcDFWOHlSc3RMZAmctb0RPVzBFNW4yN0Vac3lWdndydEI0WmJVbnQtNUhQYTg1VkRLV19IaW1iaXN2czVyMGNidkItYlBIYjJzV0xLTHplT2RzNnU1QUpPWWxGMmtJaGFhNTBUV1kZD';
   }
 
   async processEvent(event: any) {
@@ -47,7 +47,7 @@ export class InstagramService {
     };
     console.log(url, payload, this.accessToken);
     const headers = {
-        Authorization: `Bearer ${this.accessToken}`,
+        Authorization: `Bearer ${this.accessToken}`.replaceAll("\\r\\n", ""),
         'Content-Type': 'application/json',
       };
         try {
