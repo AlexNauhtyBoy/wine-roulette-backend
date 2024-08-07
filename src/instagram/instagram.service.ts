@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
+import { ConfigService } from '@nestjs/config';
 
 import { catchError, tap } from 'rxjs/operators';
 import { firstValueFrom, throwError } from 'rxjs';
@@ -10,9 +11,10 @@ export class InstagramService {
   private axiosInstance: AxiosInstance;
 
   constructor(
+    private configService: ConfigService
   ) {
-    this.accessToken = 'IGQWRQb1QwbFBUeUVCRjltNTU2cUtuY05seEVVY2pHajhoN0pGVlIyWktTbmZAKcG5ibHRoX09LQlgxSXlwUEtzVzQ2N016dFhDRFdYYlgyRzh3MGo4NVRHNDBaX2FQNVlndXU2ZAkk4emdzLUs4Wm9uVV9Qb0JuQ2cZD';
     this.axiosInstance = axios.create();
+    this.accessToken = this.configService.get<string>('INSTAGRAM_ACCESS_TOKEN');
   }
 
   async processEvent(event: any) {
@@ -36,6 +38,7 @@ export class InstagramService {
       }
   }
 
+
   async sendMessage(recipientId: string, text: string, senderId: string) {
     const url = `https://graph.instagram.com/v20.0/${senderId}/messages`;
     const payload = {
@@ -44,9 +47,8 @@ export class InstagramService {
     };
     console.log(url, payload, this.accessToken);
     const headers = {
-        'Authorization': `Bearer ${this.accessToken}`,
+        Authorization: `Bearer ${this.accessToken}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       };
         try {
             console.log('Before HTTP request');

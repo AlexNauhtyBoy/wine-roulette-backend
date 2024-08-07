@@ -2,10 +2,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { InstagramModule } from './instagram/instagram.module';
-import { HttpModule } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
-  imports: [InstagramModule],
+  imports: [InstagramModule, ConfigModule.forRoot({
+    isGlobal: true, // Makes the ConfigModule available globally
+  }),],
   controllers: [AppController],
   providers: [AppService],
 })
