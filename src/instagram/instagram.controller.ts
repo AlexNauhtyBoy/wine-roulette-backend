@@ -27,6 +27,6 @@ export class InstagramController {
   handleWebhook(@Body() body: any) {
     console.log('Webhook event received:', body);
     // Process the webhook event here
-    this.instagramService.processEvent(body);
+    // this.instagramService.processEvent(body);
   }
 }
